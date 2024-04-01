@@ -45,6 +45,8 @@ class Tuner:
         fixed_domain: bool = False
         early_stopping: Callable = None
         constraint: Callable = None
+        random_n_tries: int = 3
+        constraint_max_retries: int = 10
 
         def __post_init__(self):
             if self.optimizer not in self.valid_optimizers:
@@ -99,7 +101,7 @@ class Tuner:
 
         # save domain size
         self.ds = domain_space(
-            self.param_dict, self.config.domain_size, constraint=self.config.constraint
+            self.param_dict, self.config.domain_size, constraint=self.config.constraint, constraint_max_retries=self.config.constraint_max_retries
         )
 
         # stores the results of using the tuner
@@ -188,7 +190,7 @@ class Tuner:
 
             # in case initial random results are invalid try different samples
             n_tries = 1
-            while len(Y_list) < self.config.initial_random and n_tries < 3:
+            while len(Y_list) < self.config.initial_random and n_tries < self.config.random_n_tries:
                 X_tried2 = self.ds.get_random_sample(
                     self.config.initial_random - len(Y_list)
                 )
