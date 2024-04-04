@@ -2,11 +2,11 @@
 name = "arm-mango"
 version = "1.4.3"
 description = "parallel bayesian optimization over complex search spaces"
-authors = ["Sandeep Singh Sandha <sandha.iitr@gmail.com>", "Mohit Aggarwal <mohitagg@gmail.com>"]
+authors = ["Anastasios Papadopoulos"]
 license = "Apache-2.0"
 readme = "README.md"
-homepage = "https://github.com/ARM-software/mango"
-repository = "https://github.com/ARM-software/mango"
+homepage = "https://github.com/apapadoi/mango.git"
+repository = "https://github.com/apapadoi/mango.git"
 packages = [
         { include = "mango" }
 ]
